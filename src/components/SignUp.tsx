@@ -55,10 +55,10 @@ const SignUp = () => {
         throw new Error(message)
     }
 
-    interface Errors {
-        status: number,
-        message?: string
-    }
+    // interface Errors {
+    //     status: number,
+    //     message?: string
+    // }
 
     const handleSubmit = async () => {
 

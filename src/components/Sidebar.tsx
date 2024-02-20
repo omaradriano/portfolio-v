@@ -1,12 +1,11 @@
 import { Link, Outlet } from 'react-router-dom'
-import { BrowserRouter } from 'react-router-dom';
 import Icon from './Icon';
 
 interface SidebarProps {
     visible: boolean
 }
 
-const Sidebar: React.FC<SidebarProps> = ({visible}) => {
+const Sidebar: React.FC<SidebarProps> = () => {
     return (
         <>
             <div className="sidebar">

@@ -2,7 +2,7 @@ interface HeaderProps {
     activateSidebar: Function
 }
 
-const Header: React.FC<HeaderProps> = ({activateSidebar}) => {
+const Header: React.FC<HeaderProps> = () => {
     return(
         <>
             <div className="header">

@@ -1,0 +1,15 @@
+/* // XX-Large devices (larger desktops, 1400px and up) */
+@media (min-width: 1400px) { 
+    .layout {
+        width: 100vw;
+        height: 100vh;
+    
+        display: grid;
+        grid:
+            "header header header" 56px 
+            "sidebar body projects" auto 
+            "footer footer footer" 60px 
+            / 0.3fr 1fr 0.10fr;
+        /* gap: 5px; */
+    }
+ }

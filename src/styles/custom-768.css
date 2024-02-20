@@ -1,0 +1,59 @@
+/* // Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) { 
+    .layout {
+        position: initial;
+        width: 100vw;
+        height: 100vh;
+    
+        display: grid;
+        grid:
+            "header header" 56px 
+            "sidebar body" 1fr 
+            "projects projects" 0.2fr
+            "footer footer" 60px 
+            / 0.5fr 1fr;
+        /* gap: 5px; */
+    }
+    .projects{
+        flex-direction: row;
+    }
+    .sidebar {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .burguer-menu {
+        display: none;
+    }
+
+    .sidebar > ul {
+        list-style: none;
+        width: 100%;
+        display: initial;
+        flex-direction: initial;
+    }
+
+    .signuplogin > a {
+        justify-content: flex-start;
+        margin-bottom: 10px;
+    }
+
+    .sidebar > ul > a {
+        justify-content: flex-start;
+        margin-bottom: 10px;
+    }
+
+    .sidebar > ul > a > li{
+        display: initial;
+    }
+    .signuplogin > a > li {
+        display: initial;
+    }
+
+}
+
+@media (max-width:992px){
+    ::-webkit-scrollbar{
+        display: block;
+    }
+}

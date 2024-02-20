@@ -1,0 +1,25 @@
+/* // Large devices (desktops, 992px and up) */
+@media (min-width: 992px) { 
+    .layout {
+        width: 100vw;
+        height: 100vh;
+    
+        display: grid;
+        grid:
+            "header header header" 56px 
+            "sidebar body projects" auto 
+            "footer footer footer" 60px 
+            / 0.3fr 1fr 0.15fr;
+        /* gap: 5px; */
+    }
+    .projects{
+        flex-direction: column;
+        padding: 10px 0;
+    }
+    .app {
+        margin: 0 0 10px 0;
+    }
+    ::-webkit-scrollbar{
+        display: none;
+    }
+ }

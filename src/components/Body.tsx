@@ -4,10 +4,8 @@ import AboutMe from "./AboutMe";
 import Profile from './Profile';
 import SignUp from "./SignUp";
 import SignIn from "./SignIn";
-// import MessageToast from './Toast';
-
-
-const Body = () => {
+const Body: React.FC = () => {
+    
     return (
         <>
             <div className="body">

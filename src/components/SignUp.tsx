@@ -1,9 +1,8 @@
 import Icon from "./Icon"
-
 import { useState } from "react"
-import { ToastOptions, Zoom, toast } from 'react-toastify';
 // import MessageToast from './Toast';
 import 'react-toastify/dist/ReactToastify.css';
+import launchToast from "../utils/launchToast";
 
 interface Form {
     user: string
@@ -21,23 +20,6 @@ const SignUp = () => {
         repeatPassword: ""
     })
 
-    function launchSignUpToast(mode: string, message: string): void {
-        const options: ToastOptions = {
-            position: "top-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "dark",
-            transition: Zoom,
-        }
-        if (mode === 'success') toast.success(message, {...options, icon: <Icon icon="check"/>})
-        if (mode === 'error') toast.error(message, {...options, icon: <Icon icon="error"/>})
-        if (mode === 'warning') toast.warning(message, {...options, icon: <Icon icon="warning"/>})
-    }
-
     const options = {
         method: 'POST',
         headers: {
@@ -54,11 +36,6 @@ const SignUp = () => {
     function throwDataError(message: string): void {
         throw new Error(message)
     }
-
-    // interface Errors {
-    //     status: number,
-    //     message?: string
-    // }
 
     const handleSubmit = async () => {
 
@@ -84,17 +61,17 @@ const SignUp = () => {
                 })
                 .then(data => {
                     if (data.status === 200) {
-                        launchSignUpToast('success', data.message)
+                        launchToast({mode:'success', message: data.message})
                         // window.location.href = '/'
                     } else {
-                        launchSignUpToast('error', data.message)
+                        launchToast({mode:'error', message: data.message})
                     }
                     console.log('Server response:', data.message);
                     console.log(data);
                 }).catch(err => {
                     console.log('Testeando errores');
                     console.log((err as Error).message);
-                    launchSignUpToast('warning', (err as Error).message)
+                    launchToast({mode: 'warning', message: (err as Error).message})
                 })
             // Unicamente da un recap de los datos que han sido enviados
             console.log('Datos enviados:', data);
@@ -102,7 +79,7 @@ const SignUp = () => {
             // Manejo de errores del lado del cliente
             let err = (error as Error).message
             console.log('Error del cliente: ' + err);
-            launchSignUpToast('warning', 'Error del cliente: ' + err)
+            launchToast({mode: 'warning', message: 'Error del cliente: ' + err})
         }
 
     };

@@ -13,6 +13,7 @@ const AboutMe = () => {
     return (
         <>
             <div className="aboutme">
+                <span className='advice text-light'>Sitio en desarrollo</span>
                 <h1 className="text-light fw-light align-self-center">About the Developer</h1>
                 <div className='aboutme__ppalInfo'>
                     <img className='img body__img' src={me} alt="Imagen de mi xd" />

@@ -5,6 +5,33 @@
     font-family: 'Kosugi Maru', sans-serif;
 }
 
+.advice {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: rgb(116, 0, 0);
+    height: 25px;
+    width: auto;
+    padding: 5px 10px;
+    animation-name: animationxd;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    border-radius: 5px;
+}
+
+@keyframes animationxd {
+    0%{
+        transform: translate(0, 0);
+    }
+    50%{
+        transform: translate(0, -10px);
+    }
+    10%{
+        transform: translate(0, 0);
+    }
+}
+
+
 html {
     min-width: 100vw;
     overflow: hidden;

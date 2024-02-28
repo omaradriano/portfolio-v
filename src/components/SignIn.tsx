@@ -39,11 +39,9 @@ const SignIn: React.FC = () => {
             .then(res => {
                 return res.json()
             }).then((res: any) => {
-                console.log(res);
                 if (!res.token) {
                     launchToast({ mode: 'error', message: res.message })
                 } else {
-                    console.log("From login", res);
                     let newData = {
                         user: res.user,
                         email: res.email

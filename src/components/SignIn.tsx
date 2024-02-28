@@ -7,7 +7,7 @@ import launchToast from '../utils/launchToast';
 import AuthContext from '../utils/AuthContext';
 const SignIn: React.FC = () => {
 
-    const [_user, setUser] = useContext(AuthContext)
+    const { setData } = useContext(AuthContext)
 
     const navigate = useNavigate()
 
@@ -16,14 +16,14 @@ const SignIn: React.FC = () => {
         password: string
     }
 
-    const [data, setData] = useState<Login>({
+    const [formData, setFormData] = useState<Login>({
         email: "",
         password: ""
     })
 
     function handleForm(e: React.ChangeEvent<HTMLInputElement>) {
         const { name, value } = e.target;
-        setData({ ...data, [name]: value });
+        setFormData({ ...formData, [name]: value });
     }
 
     const options = {
@@ -31,21 +31,26 @@ const SignIn: React.FC = () => {
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify(data)
+        body: JSON.stringify(formData)
     };
 
     async function login() {
         fetch('http://127.0.0.1:3001/login', options)
             .then(res => {
                 return res.json()
-            }).then((res) => {
+            }).then((res: any) => {
+                console.log(res);
                 if (!res.token) {
-                    launchToast({mode: 'error', message: res.message})
+                    launchToast({ mode: 'error', message: res.message })
                 } else {
-                    console.log(res);
+                    console.log("From login", res);
+                    let newData = {
+                        user: res.user,
+                        email: res.email
+                    }
                     localStorage.setItem('token', res.token)
-                    setUser(res.data)
-                    launchToast({mode: 'success', message: res.message})
+                    setData({ status: "online", auth: true, data: { ...newData }})
+                    launchToast({ mode: 'success', message: res.message })
                     navigate("/")
                 }
                 console.log(res);

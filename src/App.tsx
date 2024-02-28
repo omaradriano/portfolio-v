@@ -7,6 +7,8 @@ import { useEffect, useState } from "react";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import AuthContext from "./utils/AuthContext";
+
+import { User } from '../src/types/user.types'
 const App = () => {
 
   const [visibleSidebar, setVisibleSidebar] = useState<boolean>(false)
@@ -21,7 +23,8 @@ const App = () => {
     setVisibleSidebar(!visibleSidebar)
   }
 
-  const [user, setUser] = useState('username')
+  //State que almacena los datos del usuario dependiendo de la sesion
+  const [data, setData] = useState<User | null>({ status: "offline", auth: false })
 
   const options = {
     method: 'POST',
@@ -34,20 +37,31 @@ const App = () => {
   useEffect(() => {
     fetch('http://localhost:3001/verifycredentials', options)
       .then(res => {
-        console.log('Debug');
         return res.json()
       })
-      .then((res) => {
+      .then((res: any) => {
+        console.log(res);
+        console.log("Datos del back",res.data);
         if (res.data) {
-          setUser(res.data)
+          //Si hay informacion de usuario, carga los datos al estado y cargalo a Context
+          setData(() => {
+            return { status: "online", auth: true, data: {...res.data} }
+          })
+          // { status: "online", auth: true, data: {...res.data} }
+        }else{
+          setData({ status: "offline", auth: false, data: {user: ''} })
         }
+      })
+      .catch(err => {
+        console.log(err);
       })
   }, [])
 
   return (
     <>
       <div className="layout">
-        <AuthContext.Provider value={[user, setUser]}>
+        {/* Con el provider agregamos la informacion que traemos de las credenciales si estan activas, en caso contrario se trae la informacion por defecto */}
+        <AuthContext.Provider value={{ data, setData }}>
           <Header activateSidebar={toggleSidebar} />
           <Sidebar visible={visibleSidebar} />
           <Body />

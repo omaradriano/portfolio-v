@@ -57,6 +57,14 @@ html {
     align-self: center;
 }
 
+.tag {
+    padding: 4px 8px;
+    background-color: var(--navbar-color);
+    border-radius: 10px;
+    margin-right: 10px;
+    color: var(--text-color);
+}
+
 .btn {
     height: 32px;
     width: auto;
@@ -273,6 +281,8 @@ html {
     display: flex;
     flex-direction: column;
     overflow-y: scroll;
+
+    align-items: center;
 }
 
 /* --------------------------------------------------------------- */
@@ -561,6 +571,14 @@ html {
     /* border: 4px solid white; */
 
     cursor: pointer;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    max-width: 75px;
+    text-decoration: none;
 }
 
 /* --------------------------------------------------------------- */
@@ -592,6 +610,61 @@ html {
 .btn__contact{
     position: absolute;
     right: 20px;
+}
+
+/* --------------------------------------------------------------- */
+/* ----------------------------apps----------------------------- */
+/* --------------------------------------------------------------- */
+
+.app_card {
+    position: relative;
+
+    width: 80%;
+    min-width: 320px;
+    max-width: 420px;
+    min-height: 250px;
+    background-color: var(--sidebar-color);
+
+    display: flex;
+    flex-direction: column;
+
+    padding: 15px;
+
+    border-radius: 5px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+}
+
+.app_card > h3 {
+    letter-spacing: 2px;
+    font-weight: 300;
+    transform: translate(10px);
+}
+
+.app_card__img {
+    height: 160px;
+    width: 100%;
+    background-color: yellow;
+    align-self: center;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background-position: center;
+    background-size: cover;
+}
+
+.app_card__img > img {
+    width: 100%;
+    height: 100%;
+    background-position: center;
+}
+
+.app_card__languages {
+    position: absolute;
+    bottom: 15px;
+    left: 15px;
 }
 
 /* --------------------------------------------------------------- */

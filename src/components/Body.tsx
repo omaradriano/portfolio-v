@@ -4,6 +4,7 @@ import AboutMe from "./AboutMe";
 import Profile from './Profile';
 import SignUp from "./SignUp";
 import SignIn from "./SignIn";
+import Apps from "./Apps";
 const Body: React.FC = () => {
     
     return (
@@ -12,7 +13,7 @@ const Body: React.FC = () => {
                 <Routes>
                     <Route path='/' element={<AboutMe />} />
                     <Route path='/profile' element={<Profile />} />
-                    <Route path='/apps' element={<><h1>Games</h1></>} />
+                    <Route path='/apps' element={<Apps />} />
                     <Route path='/signup' element={<SignUp />} />
                     <Route path='/login' element={<SignIn />} />
                 </Routes>

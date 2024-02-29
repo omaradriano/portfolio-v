@@ -34,14 +34,13 @@ const App = () => {
     },
   };
 
+  //Endpoint para verificar las credenciales activa, esta solucion es provisional, se debe de implementar un middleware
   useEffect(() => {
     fetch('http://localhost:3001/verifycredentials', options)
       .then(res => {
         return res.json()
       })
       .then((res: any) => {
-        console.log(res);
-        console.log("Datos del back",res.data);
         if (res.data) {
           //Si hay informacion de usuario, carga los datos al estado y cargalo a Context
           setData(() => {
@@ -49,6 +48,7 @@ const App = () => {
           })
           // { status: "online", auth: true, data: {...res.data} }
         }else{
+          console.log('Sin sesion activa');
           setData({ status: "offline", auth: false, data: {user: ''} })
         }
       })

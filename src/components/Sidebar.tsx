@@ -1,4 +1,4 @@
-import { Link, Outlet } from 'react-router-dom'
+import { Link, Outlet, useNavigate } from 'react-router-dom'
 import Icon from './Icon';
 import { useContext } from 'react';
 import AuthContext from '../utils/AuthContext';
@@ -9,7 +9,15 @@ interface SidebarProps {
 
 const Sidebar: React.FC<SidebarProps> = () => {
 
-    const { data } = useContext(AuthContext)
+    const { data, setData } = useContext(AuthContext)
+
+    const navigate = useNavigate()
+
+    function logout() {
+        localStorage.removeItem('token')
+        setData({ status: "offline", auth: false, data: { user: '' } })
+        navigate("/")
+    }
 
     return (
         <>
@@ -44,7 +52,7 @@ const Sidebar: React.FC<SidebarProps> = () => {
                                 </Link>
                             </>
                         ) : (
-                            <Link to="#">
+                            <Link to="/" onClick={()=>logout()}>
                                 <Icon icon='logout' customIconClassName='color-light'></Icon>
                                 <li>Logout</li>
                             </Link>
